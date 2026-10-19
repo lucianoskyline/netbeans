@@ -6,7 +6,10 @@ package org.netbeans.modules.ai.chat;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -31,7 +34,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultEditorKit;
-import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -40,7 +42,6 @@ import org.netbeans.api.editor.EditorRegistry;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionReferences;
-import org.openide.loaders.DataObject;
 import org.openide.util.NbBundle;
 import org.openide.util.RequestProcessor;
 import org.openide.windows.TopComponent;
@@ -76,7 +77,12 @@ import org.openide.windows.TopComponent;
     "# {0} - file name",
     "LBL_ContextSelection=context: selection from {0}",
     "LBL_Stopped=[stopped]",
-    "LBL_Welcome=Ask anything about your code. Enter sends, Shift+Enter adds a new line."
+    "LBL_Welcome=Ask anything about your code. Enter sends, Shift+Enter adds a new line.",
+    "LBL_ApplyCode=Apply...",
+    "LBL_CopyCode=Copy",
+    "# {0} - file name",
+    "HINT_ApplyCodeTarget=Review the change to {0} in a diff and apply it",
+    "HINT_ApplyCodeCaret=Review in a diff and insert at the caret of the current editor"
 })
 public final class AiChatTopComponent extends TopComponent {
 
@@ -87,6 +93,8 @@ public final class AiChatTopComponent extends TopComponent {
     private static final String SYSTEM_PROMPT =
             "You are an AI coding assistant embedded in the Apache NetBeans IDE. " // NOI18N
             + "Be concise and precise. Use Markdown code fences with a language tag for code. " // NOI18N
+            + "When asked to change code that was provided from the editor, reply with the complete " // NOI18N
+            + "updated selection or file in a single code block, so it can replace the original as is. " // NOI18N
             + "Answer in the same language the user writes in."; // NOI18N
 
     private final List<ChatMessage> history = new ArrayList<>();
@@ -199,11 +207,14 @@ public final class AiChatTopComponent extends TopComponent {
         }
         String display = text;
         String content = text;
+        CodeApplier.Target target = null;
         if (includeContext.isSelected()) {
-            String[] ctx = captureEditorContext();
+            JTextComponent editor = EditorRegistry.lastFocusedComponent();
+            String[] ctx = captureEditorContext(editor);
             if (ctx != null) {
                 display = text + "\n[" + ctx[0] + "]";
                 content = ctx[1] + "\n\n" + text;
+                target = CodeApplier.Target.forContext(editor);
             }
         }
         ChatMessage question = new ChatMessage(ChatMessage.Role.USER, display, content);
@@ -212,6 +223,7 @@ public final class AiChatTopComponent extends TopComponent {
         AiProvider provider = selectedProvider();
         String model = AiSettings.model(provider);
         ChatMessage reply = new ChatMessage(ChatMessage.Role.ASSISTANT, provider.displayName, "");
+        reply.target = target;
         history.add(reply);
         input.setText("");
         ChatClient client = new ChatClient();
@@ -225,7 +237,7 @@ public final class AiChatTopComponent extends TopComponent {
                 if (key == null) {
                     error = Bundle.ERR_NoApiKey(provider.displayName, provider.envVariable);
                 } else {
-                    client.stream(provider, model, key, SYSTEM_PROMPT, conversation, delta -> {
+                    client.stream(provider, model, key, SYSTEM_PROMPT, conversation, ChatClient.CHAT_MAX_TOKENS, delta -> {
                         synchronized (reply) {
                             reply.content.append(delta);
                         }
@@ -288,16 +300,11 @@ public final class AiChatTopComponent extends TopComponent {
     }
 
     /** @return {label, prompt text} or null when no editor is open */
-    private static String[] captureEditorContext() {
-        JTextComponent editor = EditorRegistry.lastFocusedComponent();
+    private static String[] captureEditorContext(JTextComponent editor) {
         if (editor == null) {
             return null;
         }
-        Document doc = editor.getDocument();
-        Object source = doc.getProperty(Document.StreamDescriptionProperty);
-        String name = source instanceof DataObject
-                ? ((DataObject) source).getPrimaryFile().getNameExt()
-                : "untitled"; // NOI18N
+        String name = CodeApplier.nameOf(editor.getDocument());
         String selection = editor.getSelectedText();
         boolean isSelection = selection != null && !selection.isBlank();
         String code = isSelection ? selection : editor.getText();
@@ -371,7 +378,7 @@ public final class AiChatTopComponent extends TopComponent {
                         if (body.isEmpty()) {
                             doc.insertString(doc.getLength(), Bundle.LBL_Thinking(), muted);
                         } else {
-                            appendMarkdown(doc, body, text, code);
+                            appendMarkdown(doc, body, text, code, m.target);
                         }
                     }
                     case ERROR -> doc.insertString(doc.getLength(), m.content.toString(), error);
@@ -394,20 +401,54 @@ public final class AiChatTopComponent extends TopComponent {
         }
     }
 
-    /** Minimal Markdown: fenced code blocks get a monospaced style, everything else is plain text. */
+    /**
+     * Minimal Markdown: fenced code blocks get a monospaced style and, once
+     * closed, Apply/Copy buttons; everything else is plain text.
+     */
     private static void appendMarkdown(StyledDocument doc, String markdown, SimpleAttributeSet text,
-            SimpleAttributeSet code) throws BadLocationException {
-        boolean inCode = false;
+            SimpleAttributeSet code, CodeApplier.Target target) throws BadLocationException {
+        StringBuilder block = null;
         String[] lines = markdown.split("\n", -1); // NOI18N
         for (int i = 0; i < lines.length; i++) {
             String line = lines[i];
             if (line.trim().startsWith("```")) { // NOI18N
-                inCode = !inCode;
+                if (block == null) {
+                    block = new StringBuilder();
+                } else {
+                    SimpleAttributeSet buttons = new SimpleAttributeSet();
+                    StyleConstants.setComponent(buttons, codeButtons(block.toString(), target));
+                    doc.insertString(doc.getLength(), " ", buttons); // NOI18N
+                    doc.insertString(doc.getLength(), "\n", text); // NOI18N
+                    block = null;
+                }
                 continue;
             }
+            if (block != null) {
+                block.append(block.length() == 0 ? "" : "\n").append(line); // NOI18N
+            }
             boolean last = i == lines.length - 1;
-            doc.insertString(doc.getLength(), last ? line : line + "\n", inCode ? code : text);
+            doc.insertString(doc.getLength(), last ? line : line + "\n", block != null ? code : text);
         }
+    }
+
+    private static JComponent codeButtons(String code, CodeApplier.Target target) {
+        JButton apply = new JButton(Bundle.LBL_ApplyCode());
+        apply.setToolTipText(target != null
+                ? Bundle.HINT_ApplyCodeTarget(target.name)
+                : Bundle.HINT_ApplyCodeCaret());
+        apply.addActionListener(e -> CodeApplier.apply(target, code));
+        JButton copy = new JButton(Bundle.LBL_CopyCode());
+        copy.addActionListener(e -> Toolkit.getDefaultToolkit().getSystemClipboard()
+                .setContents(new StringSelection(code), null));
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 4, 2));
+        panel.setOpaque(false);
+        for (JButton b : new JButton[] {apply, copy}) {
+            b.putClientProperty("JButton.buttonType", "toolBarButton"); // NOI18N
+            b.setFocusable(false);
+            panel.add(b);
+        }
+        panel.setAlignmentY(0.8f);
+        return panel;
     }
 
     private static Color mix(Color a, Color b, float amount) {

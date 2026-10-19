@@ -18,6 +18,8 @@ final class ChatMessage {
     final StringBuilder content;
     /** Set on questions that got no answer, so they are not replayed in later requests. */
     boolean excluded;
+    /** For answers: the editor region the question was about, where "Apply" writes to. */
+    CodeApplier.Target target;
 
     ChatMessage(Role role, String display, String content) {
         this.role = role;

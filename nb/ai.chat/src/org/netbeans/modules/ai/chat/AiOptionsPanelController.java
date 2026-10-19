@@ -12,6 +12,8 @@ import java.beans.PropertyChangeSupport;
 import java.util.EnumMap;
 import java.util.Map;
 import javax.swing.BorderFactory;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -39,14 +41,22 @@ import org.openide.util.RequestProcessor;
     "LBL_ModelField=Model:",
     "# {0} - environment variable",
     "HINT_KeyStorage=Stored in the system keyring. If empty, the {0} environment variable is used.",
-    "HINT_Model=Leave the model empty to use the default."
+    "HINT_Model=Leave the model empty to use the default.",
+    "LBL_CompletionModel=Completion model:",
+    "LBL_InlineTitle=Inline completion",
+    "LBL_InlineEnabled=Suggest the rest of the line as you type (Tab accepts, Esc dismisses)",
+    "LBL_InlineProvider=Provider:",
+    "HINT_InlineCost=Each suggestion is one API request, billed by the provider. Use a fast, cheap model."
 })
 public final class AiOptionsPanelController extends OptionsPanelController {
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     private final Map<AiProvider, JPasswordField> keys = new EnumMap<>(AiProvider.class);
     private final Map<AiProvider, JTextField> models = new EnumMap<>(AiProvider.class);
+    private final Map<AiProvider, JTextField> completionModels = new EnumMap<>(AiProvider.class);
     private final Map<AiProvider, String> loadedKeys = new EnumMap<>(AiProvider.class);
+    private final JCheckBox inlineEnabled = new JCheckBox(Bundle.LBL_InlineEnabled());
+    private final JComboBox<AiProvider> inlineProvider = new JComboBox<>(AiProvider.values());
     private JPanel panel;
     private boolean changed;
     private boolean loading;
@@ -58,7 +68,11 @@ public final class AiOptionsPanelController extends OptionsPanelController {
         for (AiProvider p : AiProvider.values()) {
             String m = AiSettings.model(p);
             models.get(p).setText(m.equals(p.defaultModel) ? "" : m);
+            String cm = AiSettings.inlineModel(p);
+            completionModels.get(p).setText(cm.equals(p.defaultFastModel) ? "" : cm);
         }
+        inlineEnabled.setSelected(AiSettings.inlineEnabled());
+        inlineProvider.setSelectedItem(AiSettings.inlineProvider());
         loading = false;
         // the keyring may prompt or block, keep it off the EDT
         RequestProcessor.getDefault().post(() -> {
@@ -82,11 +96,14 @@ public final class AiOptionsPanelController extends OptionsPanelController {
         Map<AiProvider, String> newKeys = new EnumMap<>(AiProvider.class);
         for (AiProvider p : AiProvider.values()) {
             AiSettings.setModel(p, models.get(p).getText());
+            AiSettings.setInlineModel(p, completionModels.get(p).getText());
             String k = new String(keys.get(p).getPassword());
             if (!k.equals(loadedKeys.getOrDefault(p, ""))) {
                 newKeys.put(p, k);
             }
         }
+        AiSettings.setInlineEnabled(inlineEnabled.isSelected());
+        AiSettings.setInlineProvider((AiProvider) inlineProvider.getSelectedItem());
         loadedKeys.putAll(newKeys);
         RequestProcessor.getDefault().post(() -> newKeys.forEach(AiSettings::setApiKey));
         changed = false;
@@ -168,6 +185,13 @@ public final class AiOptionsPanelController extends OptionsPanelController {
             p.add(new JLabel(Bundle.LBL_ModelField()), gbc(0, row, 1, 4));
             p.add(model, fill(gbc(1, row++, 1, 4)));
 
+            JTextField completionModel = new JTextField(40);
+            completionModel.putClientProperty("JTextField.placeholderText", provider.defaultFastModel); // NOI18N
+            completionModel.getDocument().addDocumentListener(listener);
+            completionModels.put(provider, completionModel);
+            p.add(new JLabel(Bundle.LBL_CompletionModel()), gbc(0, row, 1, 4));
+            p.add(completionModel, fill(gbc(1, row++, 1, 4)));
+
             JLabel hint = new JLabel(Bundle.HINT_KeyStorage(provider.envVariable));
             hint.setForeground(UIManager.getColor("Label.disabledForeground")); // NOI18N
             p.add(hint, gbc(1, row++, 1, 2));
@@ -175,6 +199,18 @@ public final class AiOptionsPanelController extends OptionsPanelController {
         JLabel modelHint = new JLabel(Bundle.HINT_Model());
         modelHint.setForeground(UIManager.getColor("Label.disabledForeground")); // NOI18N
         p.add(modelHint, gbc(0, row++, 2, 14));
+
+        JLabel inlineTitle = new JLabel(Bundle.LBL_InlineTitle());
+        inlineTitle.setFont(inlineTitle.getFont().deriveFont(java.awt.Font.BOLD));
+        p.add(inlineTitle, gbc(0, row++, 2, 18));
+        inlineEnabled.addActionListener(e -> markChanged());
+        p.add(inlineEnabled, gbc(0, row++, 2, 4));
+        inlineProvider.addActionListener(e -> markChanged());
+        p.add(new JLabel(Bundle.LBL_InlineProvider()), gbc(0, row, 1, 4));
+        p.add(inlineProvider, gbc(1, row++, 1, 4));
+        JLabel costHint = new JLabel(Bundle.HINT_InlineCost());
+        costHint.setForeground(UIManager.getColor("Label.disabledForeground")); // NOI18N
+        p.add(costHint, gbc(0, row++, 2, 4));
         GridBagConstraints filler = gbc(0, row, 2, 0);
         filler.weighty = 1;
         p.add(new JPanel(), filler);

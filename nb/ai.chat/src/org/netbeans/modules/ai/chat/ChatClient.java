@@ -32,7 +32,7 @@ final class ChatClient {
     private static final HttpClient HTTP = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(20))
             .build();
-    private static final int MAX_TOKENS = 8192;
+    static final int CHAT_MAX_TOKENS = 8192;
 
     private final AtomicReference<Stream<String>> body = new AtomicReference<>();
     private volatile boolean cancelled;
@@ -46,12 +46,12 @@ final class ChatClient {
         }
     }
 
-    void stream(AiProvider provider, String model, String apiKey, String system,
-            List<ChatMessage> history, Consumer<String> onText) throws IOException, InterruptedException {
+    void stream(AiProvider provider, String model, String apiKey, String system, List<ChatMessage> history,
+            int maxTokens, Consumer<String> onText) throws IOException, InterruptedException {
         HttpRequest request = switch (provider) {
-            case CLAUDE -> claude(model, apiKey, system, history);
-            case CHATGPT -> openAi(model, apiKey, system, history);
-            case GEMINI -> gemini(model, apiKey, system, history);
+            case CLAUDE -> claude(model, apiKey, system, history, maxTokens);
+            case CHATGPT -> openAi(model, apiKey, system, history, maxTokens);
+            case GEMINI -> gemini(model, apiKey, system, history, maxTokens);
         };
         HttpResponse<Stream<String>> response = HTTP.send(request, HttpResponse.BodyHandlers.ofLines());
         try (Stream<String> lines = response.body()) {
@@ -95,14 +95,14 @@ final class ChatClient {
                 .POST(HttpRequest.BodyPublishers.ofString(json.toJSONString(), StandardCharsets.UTF_8));
     }
 
-    private static HttpRequest claude(String model, String key, String system, List<ChatMessage> history) {
+    private static HttpRequest claude(String model, String key, String system, List<ChatMessage> history, int maxTokens) {
         JSONArray messages = new JSONArray();
         for (ChatMessage m : history) {
             messages.add(message(m.role == ChatMessage.Role.USER ? "user" : "assistant", m.content.toString())); // NOI18N
         }
         JSONObject json = new JSONObject();
         json.put("model", model); // NOI18N
-        json.put("max_tokens", MAX_TOKENS); // NOI18N
+        json.put("max_tokens", maxTokens); // NOI18N
         json.put("stream", true); // NOI18N
         json.put("system", system); // NOI18N
         json.put("messages", messages); // NOI18N
@@ -112,7 +112,7 @@ final class ChatClient {
                 .build();
     }
 
-    private static HttpRequest openAi(String model, String key, String system, List<ChatMessage> history) {
+    private static HttpRequest openAi(String model, String key, String system, List<ChatMessage> history, int maxTokens) {
         JSONArray messages = new JSONArray();
         messages.add(message("system", system)); // NOI18N
         for (ChatMessage m : history) {
@@ -121,13 +121,14 @@ final class ChatClient {
         JSONObject json = new JSONObject();
         json.put("model", model); // NOI18N
         json.put("stream", true); // NOI18N
+        json.put("max_completion_tokens", maxTokens); // NOI18N
         json.put("messages", messages); // NOI18N
         return post("https://api.openai.com/v1/chat/completions", json) // NOI18N
                 .header("authorization", "Bearer " + key) // NOI18N
                 .build();
     }
 
-    private static HttpRequest gemini(String model, String key, String system, List<ChatMessage> history) {
+    private static HttpRequest gemini(String model, String key, String system, List<ChatMessage> history, int maxTokens) {
         JSONArray contents = new JSONArray();
         for (ChatMessage m : history) {
             JSONObject c = new JSONObject();
@@ -140,6 +141,9 @@ final class ChatClient {
         JSONObject json = new JSONObject();
         json.put("systemInstruction", instruction); // NOI18N
         json.put("contents", contents); // NOI18N
+        JSONObject generation = new JSONObject();
+        generation.put("maxOutputTokens", maxTokens); // NOI18N
+        json.put("generationConfig", generation); // NOI18N
         String url = "https://generativelanguage.googleapis.com/v1beta/models/" // NOI18N
                 + URLEncoder.encode(model, StandardCharsets.UTF_8) + ":streamGenerateContent?alt=sse"; // NOI18N
         return post(url, json)

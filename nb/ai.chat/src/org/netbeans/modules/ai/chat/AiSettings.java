@@ -45,6 +45,38 @@ final class AiSettings {
         prefs().put("provider", p.name()); // NOI18N
     }
 
+    static boolean inlineEnabled() {
+        return prefs().getBoolean("inline.enabled", false); // NOI18N
+    }
+
+    static void setInlineEnabled(boolean enabled) {
+        prefs().putBoolean("inline.enabled", enabled); // NOI18N
+    }
+
+    static AiProvider inlineProvider() {
+        try {
+            return AiProvider.valueOf(prefs().get("inline.provider", AiProvider.CLAUDE.name())); // NOI18N
+        } catch (IllegalArgumentException ex) {
+            return AiProvider.CLAUDE;
+        }
+    }
+
+    static void setInlineProvider(AiProvider p) {
+        prefs().put("inline.provider", p.name()); // NOI18N
+    }
+
+    static String inlineModel(AiProvider p) {
+        return prefs().get("inline.model." + p.name(), p.defaultFastModel); // NOI18N
+    }
+
+    static void setInlineModel(AiProvider p, String model) {
+        if (model == null || model.isBlank() || model.trim().equals(p.defaultFastModel)) {
+            prefs().remove("inline.model." + p.name()); // NOI18N
+        } else {
+            prefs().put("inline.model." + p.name(), model.trim()); // NOI18N
+        }
+    }
+
     private static String keyringKey(AiProvider p) {
         return "org.netbeans.modules.ai.chat." + p.name(); // NOI18N
     }
