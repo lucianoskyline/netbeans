@@ -47,6 +47,13 @@
                             </file>
                         </folder>
                     </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="FontAndColors-darktheme.xml" url="FontAndColors-darktheme.xml">
+                                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.modules.languages.jflex.resources.Bundle"/>
+                            </file>
+                        </folder>
+                    </folder>
                 </folder>
             </folder> 
         </folder>

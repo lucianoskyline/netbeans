@@ -33,6 +33,13 @@
                             </file>
                         </folder>
                     </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="FontAndColors.xml" url="FlatLafDark-FontAndColors.xml">
+                                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.modules.languages.antlr.Bundle"/>
+                            </file>
+                        </folder>
+                    </folder>
                     <folder name="NetBeans">
                         <folder name="Defaults">
                             <file name="FontAndColors.xml" url="FontAndColors.xml">
@@ -51,6 +58,13 @@
                 <attr name="displayName" bundlevalue="org.netbeans.modules.languages.antlr.Bundle#Editors/text/x-antlr4"/>
                 <folder name="FontsColors">
                     <folder name="FlatLafDark">
+                        <folder name="Defaults">
+                            <file name="FontAndColors.xml" url="FlatLafDark-FontAndColors.xml">
+                                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.modules.languages.antlr.Bundle"/>
+                            </file>
+                        </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
                         <folder name="Defaults">
                             <file name="FontAndColors.xml" url="FlatLafDark-FontAndColors.xml">
                                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.modules.languages.antlr.Bundle"/>

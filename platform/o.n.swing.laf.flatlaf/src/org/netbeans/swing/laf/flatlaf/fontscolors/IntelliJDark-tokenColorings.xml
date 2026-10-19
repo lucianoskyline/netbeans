@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+
+-->
+<!DOCTYPE fontscolors PUBLIC "-//NetBeans//DTD Editor Fonts and Colors settings 1.1//EN" "http://www.netbeans.org/dtds/EditorFontsColors-1_1.dtd">
+<fontscolors>
+    <fontcolor name="char" foreColor="ff6aab73"/>
+    <fontcolor name="comment" foreColor="ff7a7e85"/>
+    <fontcolor name="default" foreColor="ffbcbec4" bgColor="ff1e1f22"/>
+    <fontcolor name="entity-reference" default="default"/>
+    <fontcolor name="error" waveUnderlined="ff9e2927"/>
+    <fontcolor name="field" default="identifier" foreColor="ffc77dbb"/>
+    <fontcolor name="identifier" foreColor="ffbcbec4"/>
+    <fontcolor name="keyword" foreColor="ffcf8e6d"/>
+    <fontcolor name="mark-occurrences" bgColor="ff373b39"/>
+    <fontcolor name="markup-attribute" default="field" foreColor="ffbababa"/>
+    <fontcolor name="markup-attribute-value" default="string" foreColor="ff6aab73"/>
+    <fontcolor name="markup-element" default="keyword" foreColor="ffd5b778"/>
+    <fontcolor name="method" default="identifier"/>
+    <fontcolor name="number" foreColor="ff2aacb8"/>
+    <fontcolor name="operator" foreColor="ffbcbec4"/>
+    <fontcolor name="separator" foreColor="ffbcbec4"/>
+    <fontcolor name="string" foreColor="ff6aab73"/>
+    <fontcolor name="url" foreColor="ff287bde" underline="ff287bde"/>
+    <fontcolor name="warning" bgColor="ff52503a" waveUnderlined="ff52503a"/>
+    <fontcolor name="whitespace" foreColor="ff505050"/>
+</fontscolors>

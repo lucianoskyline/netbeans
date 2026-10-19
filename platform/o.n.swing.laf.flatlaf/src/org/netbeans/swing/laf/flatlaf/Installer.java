@@ -35,7 +35,9 @@ import org.openide.util.*;
     "LBL_FLATLAF_LIGHT=FlatLaf Light",
     "LBL_FLATLAF_DARK=FlatLaf Dark",
     "LBL_FLATLAF_CUPERTINO_LIGHT=FlatLaf Cupertino Light",
-    "LBL_FLATLAF_CUPERTINO_DARK=FlatLaf Cupertino Dark"
+    "LBL_FLATLAF_CUPERTINO_DARK=FlatLaf Cupertino Dark",
+    "LBL_FLATLAF_INTELLIJ_LIGHT=FlatLaf IntelliJ Light",
+    "LBL_FLATLAF_INTELLIJ_DARK=FlatLaf IntelliJ Dark"
 })
 public class Installer extends ModuleInstall {
 
@@ -45,6 +47,8 @@ public class Installer extends ModuleInstall {
         UIManager.installLookAndFeel(new UIManager.LookAndFeelInfo(Bundle.LBL_FLATLAF_DARK(), FlatDarkLaf.class.getName()));
         UIManager.installLookAndFeel(new UIManager.LookAndFeelInfo(Bundle.LBL_FLATLAF_CUPERTINO_LIGHT(), FlatMacLightLaf.class.getName()));
         UIManager.installLookAndFeel(new UIManager.LookAndFeelInfo(Bundle.LBL_FLATLAF_CUPERTINO_DARK(), FlatMacDarkLaf.class.getName()));
+        UIManager.installLookAndFeel(new UIManager.LookAndFeelInfo(Bundle.LBL_FLATLAF_INTELLIJ_LIGHT(), NbIntelliJLightLaf.class.getName()));
+        UIManager.installLookAndFeel(new UIManager.LookAndFeelInfo(Bundle.LBL_FLATLAF_INTELLIJ_DARK(), NbIntelliJDarkLaf.class.getName()));
 
         // tell FlatLaf that it should look for .properties files in the given package
         FlatLaf.registerCustomDefaultsSource("org.netbeans.swing.laf.flatlaf", getClass().getClassLoader());

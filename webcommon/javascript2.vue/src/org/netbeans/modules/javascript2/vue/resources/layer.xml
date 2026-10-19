@@ -35,6 +35,15 @@
                             </folder>
                         </folder>
                     </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="NetBeans">
+                            <folder name="Defaults">
+                                <file name="FontAndColors.xml">
+                                   <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.modules.javascript2.vue.resources.Bundle"/>
+                                </file>
+                            </folder>
+                        </folder>
+                    </folder>
                     <folder name="NetBeans">
                         <folder name="Defaults">
                             <file name="FontAndColors.xml" url="FontAndColors.xml">

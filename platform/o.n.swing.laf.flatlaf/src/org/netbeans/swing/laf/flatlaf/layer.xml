@@ -38,6 +38,20 @@
                     </file>
                 </folder>
             </folder>
+            <folder name="IntelliJDark">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.swing.laf.flatlaf.Bundle"/>
+                <folder name="Defaults">
+                    <file name="org-netbeans-modules-editor-annotations-intellijdark.xml" url="fontscolors/IntelliJDark-annotations.xml">
+                        <attr name="nbeditor-settings-ColoringType" stringvalue="annotation"/>
+                    </file>
+                    <file name="org-netbeans-modules-defaults-highlight-intellijdark.xml" url="fontscolors/IntelliJDark-highlights.xml"> 
+                        <attr name="nbeditor-settings-ColoringType" stringvalue="highlight"/>
+                    </file>
+                    <file name="org-netbeans-modules-defaults-token-intellijdark.xml" url="fontscolors/IntelliJDark-tokenColorings.xml">
+                        <attr name="nbeditor-settings-ColoringType" stringvalue="token"/>
+                    </file>
+                </folder>
+            </folder>
             <folder name="FlatLafLight">
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.swing.laf.flatlaf.Bundle"/>
                 <folder name="Defaults">
@@ -52,6 +66,20 @@
                     </file>
                 </folder>
             </folder>
+            <folder name="IntelliJLight">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.swing.laf.flatlaf.Bundle"/>
+                <folder name="Defaults">
+                    <file name="org-netbeans-modules-editor-annotations-intellijlight.xml" url="fontscolors/IntelliJLight-annotations.xml">
+                        <attr name="nbeditor-settings-ColoringType" stringvalue="annotation"/>
+                    </file>
+                    <file name="org-netbeans-modules-defaults-highlight-intellijlight.xml" url="fontscolors/IntelliJLight-highlights.xml"> 
+                        <attr name="nbeditor-settings-ColoringType" stringvalue="highlight"/>
+                    </file>
+                    <file name="org-netbeans-modules-defaults-token-intellijlight.xml" url="fontscolors/IntelliJLight-tokenColorings.xml">
+                        <attr name="nbeditor-settings-ColoringType" stringvalue="token"/>
+                    </file>
+                </folder>
+            </folder>
         </folder>
         <!--  Language specific token colorings -->
         <folder name="application">
@@ -60,6 +88,11 @@
                     <folder name="FlatLafDark">
                         <folder name="Defaults">
                             <file name="org-netbeans-modules-defaults-xml-dtd-colorings.xml" url="fontscolors/FlatLafDark-DTD-tokenColorings.xml"/>
+                        </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-defaults-xml-dtd-colorings.xml" url="fontscolors/IntelliJDark-DTD-tokenColorings.xml"/>
                         </folder>
                     </folder>
                 </folder>
@@ -72,6 +105,11 @@
                         <folder name="Defaults">
                             <file name="org-netbeans-modules-editor-java-token-colorings.xml" url="fontscolors/FlatLafDark-CSS-tokenColorings.xml"/>
                         </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-editor-java-token-colorings.xml" url="fontscolors/IntelliJDark-CSS-tokenColorings.xml"/>
+                        </folder>
                     </folder>                
                 </folder>
             </folder>
@@ -80,6 +118,11 @@
                     <folder name="FlatLafDark">
                         <folder name="Defaults">
                             <file name="org-netbeans-modules-editor-html-colorings.xml" url="fontscolors/FlatLafDark-HTML-tokenColorings.xml"/>
+                        </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-editor-html-colorings.xml" url="fontscolors/IntelliJDark-HTML-tokenColorings.xml"/>
                         </folder>
                     </folder>                
                 </folder>
@@ -90,6 +133,11 @@
                         <folder name="Defaults">
                             <file name="org-netbeans-modules-web-core-syntax-token-colorings.xml" url="fontscolors/FlatLafDark-JavaScript-tokenColorings.xml"/>
                         </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-web-core-syntax-token-colorings.xml" url="fontscolors/IntelliJDark-JavaScript-tokenColorings.xml"/>
+                        </folder>
                     </folder>                
                 </folder>
             </folder>
@@ -98,6 +146,11 @@
                     <folder name="FlatLafDark">
                         <folder name="Defaults">
                             <file name="org-netbeans-modules-editor-apache-conf-token-colorings.xml" url="fontscolors/FlatLafDark-ApacheConf-tokenColorings.xml"/>
+                        </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-editor-apache-conf-token-colorings.xml" url="fontscolors/IntelliJDark-ApacheConf-tokenColorings.xml"/>
                         </folder>
                     </folder>                
                 </folder>
@@ -109,6 +162,11 @@
                             <file name="org-netbeans-modules-editor-diff-token-colorings.xml" url="fontscolors/FlatLafDark-Diff-tokenColorings.xml"/>
                         </folder>
                     </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-editor-diff-token-colorings.xml" url="fontscolors/IntelliJDark-Diff-tokenColorings.xml"/>
+                        </folder>
+                    </folder>
                 </folder>
             </folder>
             <folder name="x-el">
@@ -116,6 +174,11 @@
                     <folder name="FlatLafDark">
                         <folder name="Defaults">
                             <file name="org-netbeans-modules-el-lexer-token-colorings.xml" url="fontscolors/FlatLafDark-EL-tokenColorings.xml"/>
+                        </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-el-lexer-token-colorings.xml" url="fontscolors/IntelliJDark-EL-tokenColorings.xml"/>
                         </folder>
                     </folder>
                 </folder>
@@ -127,6 +190,11 @@
                             <file name="org-netbeans-modules-ini-token-colorings.xml" url="fontscolors/FlatLafDark-INI-tokenColorings.xml"/>
                         </folder>
                     </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-ini-token-colorings.xml" url="fontscolors/IntelliJDark-INI-tokenColorings.xml"/>
+                        </folder>
+                    </folder>
                 </folder>
             </folder>
             <folder name="x-java">
@@ -134,6 +202,11 @@
                     <folder name="FlatLafDark">
                         <folder name="Defaults">
                             <file name="org-netbeans-modules-editor-java-token-colorings.xml" url="fontscolors/FlatLafDark-Java-tokenColorings.xml"/>
+                        </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-editor-java-token-colorings.xml" url="fontscolors/IntelliJDark-Java-tokenColorings.xml"/>
                         </folder>
                     </folder>                
                 </folder>
@@ -144,6 +217,11 @@
                         <folder name="Defaults">
                             <file name="org-netbeans-modules-editor-json-token-colorings.xml" url="fontscolors/FlatLafDark-JSON-tokenColorings.xml"/>
                         </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-editor-json-token-colorings.xml" url="fontscolors/IntelliJDark-JSON-tokenColorings.xml"/>
+                        </folder>
                     </folder>                
                 </folder>
             </folder>
@@ -152,6 +230,11 @@
                     <folder name="FlatLafDark">
                         <folder name="Defaults">
                             <file name="org-netbeans-modules-web-core-syntax-token-colorings.xml" url="fontscolors/FlatLafDark-JSP-tokenColorings.xml"/>
+                        </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-web-core-syntax-token-colorings.xml" url="fontscolors/IntelliJDark-JSP-tokenColorings.xml"/>
                         </folder>
                     </folder>                
                 </folder>
@@ -162,6 +245,11 @@
                         <folder name="Defaults">
                             <file name="org-netbeans-modules-web-core-syntax-token-colorings.xml" url="fontscolors/FlatLafDark-PHP-tokenColorings.xml"/>
                         </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-web-core-syntax-token-colorings.xml" url="fontscolors/IntelliJDark-PHP-tokenColorings.xml"/>
+                        </folder>
                     </folder>                
                 </folder>
             </folder>
@@ -170,6 +258,11 @@
                     <folder name="FlatLafDark">
                         <folder name="Defaults">
                             <file name="org-netbeans-modules-properties-syntax-token-colorings.xml" url="fontscolors/FlatLafDark-Properties-tokenColorings.xml"/>
+                        </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-properties-syntax-token-colorings.xml" url="fontscolors/IntelliJDark-Properties-tokenColorings.xml"/>
                         </folder>
                     </folder>                
                 </folder>
@@ -180,6 +273,11 @@
                         <folder name="Defaults">
                             <file name="org-netbeans-modules-db-sql-editor-token-colorings.xml" url="fontscolors/FlatLafDark-SQL-tokenColorings.xml"/>
                         </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-db-sql-editor-token-colorings.xml" url="fontscolors/IntelliJDark-SQL-tokenColorings.xml"/>
+                        </folder>
                     </folder>                
                 </folder>
             </folder>
@@ -188,6 +286,11 @@
                     <folder name="FlatLafDark">
                         <folder name="Defaults">
                             <file name="org-netbeans-modules-web-core-syntax-token-colorings.xml" url="fontscolors/FlatLafDark-Tag-tokenColorings.xml"/>
+                        </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-web-core-syntax-token-colorings.xml" url="fontscolors/IntelliJDark-Tag-tokenColorings.xml"/>
                         </folder>
                     </folder>                
                 </folder>
@@ -198,6 +301,11 @@
                         <folder name="Defaults">
                             <file name="org-netbeans-modules-tpl-editor-token-colorings.xml" url="fontscolors/FlatLafDark-TPL-tokenColorings.xml"/>
                         </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-tpl-editor-token-colorings.xml" url="fontscolors/IntelliJDark-TPL-tokenColorings.xml"/>
+                        </folder>
                     </folder>                
                 </folder>
             </folder>
@@ -207,6 +315,11 @@
                         <folder name="Defaults">
                             <file name="org-netbeans-modules-editor-xhtml-colorings.xml" url="fontscolors/FlatLafDark-XHTML-tokenColorings.xml"/>
                         </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-editor-xhtml-colorings.xml" url="fontscolors/IntelliJDark-XHTML-tokenColorings.xml"/>
+                        </folder>
                     </folder>                
                 </folder>
             </folder>
@@ -215,6 +328,11 @@
                     <folder name="FlatLafDark">
                         <folder name="Defaults">
                             <file name="org-netbeans-modules-xml-text-token-colorings.xml" url="fontscolors/FlatLafDark-XML-tokenColorings.xml"/>
+                        </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-xml-text-token-colorings.xml" url="fontscolors/IntelliJDark-XML-tokenColorings.xml"/>
                         </folder>
                     </folder>                
                 </folder>
@@ -226,6 +344,11 @@
                             <file name="org-netbeans-modules-xml-external-parsed-entity-token-colorings.xml" url="fontscolors/FlatLafDark-XMLexternalentity-tokenColorings.xml"/>
                         </folder>
                     </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-xml-external-parsed-entity-token-colorings.xml" url="fontscolors/IntelliJDark-XMLexternalentity-tokenColorings.xml"/>
+                        </folder>
+                    </folder>
                 </folder>
             </folder>
             <folder name="x-yaml">
@@ -235,6 +358,11 @@
                             <file name="org-netbeans-modules-yaml-token-colorings.xml" url="fontscolors/FlatLafDark-YAML-tokenColorings.xml"/>
                         </folder>
                     </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-yaml-token-colorings.xml" url="fontscolors/IntelliJDark-YAML-tokenColorings.xml"/>
+                        </folder>
+                    </folder>
                 </folder>
             </folder>
             <folder name="x-markdown">
@@ -242,6 +370,11 @@
                     <folder name="FlatLafDark">
                         <folder name="Defaults">
                             <file name="org-netbeans-modules-markdown-token-colorings.xml" url="fontscolors/FlatLafDark-Markdown-tokenColorings.xml"/>
+                        </folder>
+                    </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="org-netbeans-modules-markdown-token-colorings.xml" url="fontscolors/IntelliJDark-Markdown-tokenColorings.xml"/>
                         </folder>
                     </folder>
                 </folder>

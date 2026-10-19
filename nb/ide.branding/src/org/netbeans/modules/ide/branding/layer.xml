@@ -35,7 +35,7 @@
     </folder>
 
     <folder name="Editors">
-      <attr name="currentFontColorProfile" stringvalue="FlatLaf Light" />
+      <attr name="currentFontColorProfile" stringvalue="IntelliJ Dark" />
     </folder>
 
     <folder name="Favorites">

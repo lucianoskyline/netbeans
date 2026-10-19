@@ -71,6 +71,13 @@
                             </file>
                         </folder>
                     </folder>
+                    <folder name="IntelliJDark">
+                        <folder name="Defaults">
+                            <file name="FontAndColors-flatlafdark.xml" url="FontAndColors-flatlafdark.xml">
+                                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.modules.markdown.resources.Bundle"/>
+                            </file>
+                        </folder>
+                    </folder>
                 </folder>
             </folder>
         </folder>
