@@ -1,77 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
-
--->
-<svg id="New_Vector" xmlns="http://www.w3.org/2000/svg" width="16" height="16" version="1.1" viewBox="0 0 16 16">
-  <!-- Generator: Adobe Illustrator 29.0.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 186)  -->
-  <defs>
-    <style>
-      .st0 {
-        fill: #ecc66b;
-      }
-
-      .st1 {
-        fill: #af9447;
-      }
-
-      .st2 {
-        opacity: .33;
-      }
-
-      .st3 {
-        fill: #a7cdea;
-      }
-
-      .st4 {
-        fill: #ead4a7;
-        opacity: .5;
-      }
-
-      .st5 {
-        fill: #775e20;
-      }
-
-      .st6 {
-        fill: #f5eedc;
-      }
-    </style>
-  </defs>
-  <g>
-    <rect class="st3" x="5" y="4" width="11" height="11"/>
-    <g class="st2">
-      <path d="M15,5v9H6V5h9M16,4H5v11h11V4h0Z"/>
-    </g>
-  </g>
-  <g>
-    <rect class="st3" x="9" y="3" width="3" height="13"/>
-    <g class="st2">
-      <path d="M11,4v11h-1V4h1M12,3h-3v13h3V3h0Z"/>
-    </g>
-  </g>
-  <g>
-    <polygon class="st0" points=".5 9.5 .5 2.286 1.611 .5 8.389 .5 9.5 2.286 9.5 9.5 .5 9.5"/>
-    <path class="st5" d="M8.111,1l.889,1.429v6.571H1V2.429l.889-1.429h6.222M8.667,0H1.333L0,2.143v7.857h10V2.143l-1.333-2.143h0Z"/>
-  </g>
-  <polygon class="st4" points="10 2.143 8.667 0 1.333 0 0 2.143 1 2.359 9 2.359 10 2.143"/>
-  <rect class="st1" y="5.5" width="10" height=".5"/>
-  <rect class="st1" x="-.083" y="4.75" width="10" height=".5" transform="translate(9.917 .083) rotate(90)"/>
-  <rect class="st1" x="1" y="2.359" width="8" height=".5"/>
-  <rect class="st6" x="6" y="4" width="2" height="1"/>
+<!-- Derived from the JetBrains IntelliJ Platform icons (nodes/field, nodes/accessLocal, nodes/staticMark), intellij-community commit 666cd44ae2e7, Apache License 2.0. -->
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="8" cy="8" r="6.5" fill="#FFF4EB" stroke="#E66D17"/>
+<path d="M7.25726 12H8.2744V7.32741H9.82869V6.43027H8.2744V5.48C8.2744 5.12 8.52012 4.87429 8.8744 4.87429H9.88012V4H8.77726C7.8744 4 7.25726 4.57143 7.25726 5.40571V6.43027H6.12012V7.32741H7.25726V12Z" fill="#E66D17"/>
+<g transform="translate(7 7) scale(0.5625)"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10ZM8 11C9.65685 11 11 9.65685 11 8C11 6.34315 9.65685 5 8 5C6.34315 5 5 6.34315 5 8C5 9.65685 6.34315 11 8 11Z" fill="#6C707E"/></g>
+<path d="M0.293693 12.709L3.29096 15.7063C3.68255 16.0979 4.31745 16.0979 4.70904 15.7063L7.70631 12.709C8.0979 12.3174 8.0979 11.6826 7.70631 11.291L4.70904 8.29369C4.31745 7.9021 3.68255 7.9021 3.29096 8.29369L0.293693 11.291C-0.0978977 11.6826 -0.0978976 12.3174 0.293693 12.709Z" fill="#EBECF0"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M1.00273 12L4 14.9973L6.99727 12L4 9.00273L1.00273 12ZM3.29096 15.7063L0.293693 12.709C-0.0978976 12.3174 -0.0978977 11.6826 0.293693 11.291L3.29096 8.29369C3.68255 7.9021 4.31745 7.9021 4.70904 8.29369L7.70631 11.291C8.0979 11.6826 8.0979 12.3174 7.70631 12.709L4.70904 15.7063C4.31745 16.0979 3.68255 16.0979 3.29096 15.7063Z" fill="#6C707E"/>
 </svg>

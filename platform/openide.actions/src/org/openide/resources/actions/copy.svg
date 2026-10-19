@@ -1,50 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
-
--->
-<svg id="New_Vector" xmlns="http://www.w3.org/2000/svg" width="16" height="16" version="1.1" viewBox="0 0 16 16">
-  <!-- Generator: Adobe Illustrator 29.0.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 186)  -->
-  <defs>
-    <style>
-      .st0 {
-        fill: #6d6d6d;
-      }
-
-      .st1 {
-        opacity: .15;
-      }
-
-      .st2 {
-        fill: #8b8b8b;
-      }
-
-      .st3 {
-        fill: #ececec;
-      }
-    </style>
-  </defs>
-  <polygon class="st3" points="7.5 14.5 7.5 4.5 12.293 4.5 15.5 7.707 15.5 14.5 7.5 14.5"/>
-  <path class="st0" d="M15,8v6h-7V5h4l3,3ZM12.414,4h-5.414v11h9v-7.414l-3.586-3.586Z"/>
-  <polygon class="st2" points="15 9 15 8 12 8 12 5 11 5 11 9 15 9"/>
-  <rect class="st1" x="1" y="4" width="9" height="8"/>
-  <polygon class="st3" points=".5 10.5 .5 .5 5.293 .5 8.5 3.707 8.5 10.5 .5 10.5"/>
-  <path class="st0" d="M8,4v6H1V1h4l3,3ZM5.414,0H0v11h9V3.586L5.414,0Z"/>
-  <polygon class="st2" points="8 5 8 4 5 4 5 1 4 1 4 5 8 5"/>
+<!-- Derived from the JetBrains IntelliJ Platform icons (platform/icons/src/expui/copy.svg), intellij-community commit 666cd44ae2e7, Apache License 2.0. -->
+<!-- Copyright 2000-2023 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license. -->
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="2.5" y="3.5" width="9" height="10" rx="1.5" stroke="#6C707E"/>
+<rect x="5" y="6" width="4" height="1" rx="0.5" fill="#6C707E"/>
+<rect x="5" y="8" width="4" height="1" rx="0.5" fill="#6C707E"/>
+<rect x="5" y="10" width="4" height="1" rx="0.5" fill="#6C707E"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M11.0017 2H11.5998C12.373 2 12.9998 2.6268 12.9998 3.4V3.91081C13.0011 3.94038 13.0017 3.97011 13.0017 4V11.5482C13.6063 11.1124 13.9998 10.4021 13.9998 9.6V3.4C13.9998 2.07452 12.9253 1 11.5998 1H6.39978C5.59677 1 4.88587 1.39437 4.4502 2H6.39978H11.0017Z" fill="#6C707E"/>
 </svg>

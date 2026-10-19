@@ -1,0 +1,7 @@
+<!-- Derived from the JetBrains IntelliJ Platform icons (nodes/field, nodes/accessPrivate), intellij-community commit 666cd44ae2e7, Apache License 2.0. -->
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="8" cy="8" r="6.5" fill="#45322B" stroke="#C77D55"/>
+<path d="M7.25726 12H8.2744V7.32741H9.82869V6.43027H8.2744V5.48C8.2744 5.12 8.52012 4.87429 8.8744 4.87429H9.88012V4H8.77726C7.8744 4 7.25726 4.57143 7.25726 5.40571V6.43027H6.12012V7.32741H7.25726V12Z" fill="#C77D55"/>
+<g transform="translate(7 7) scale(0.5625)"><rect x="6" y="8" width="4" height="3" fill="#402929"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10 7V6C10 4.89543 9.10457 4 8 4C6.89543 4 6 4.89543 6 6V7C5.44772 7 5 7.44772 5 8V11C5 11.5523 5.44772 12 6 12H10C10.5523 12 11 11.5523 11 11V8C11 7.44772 10.5523 7 10 7ZM7 6C7 5.44772 7.44772 5 8 5C8.55228 5 9 5.44772 9 6V7H7V6ZM6 11L6 8H10V11H6Z" fill="#DB5C5C"/></g>
+</svg>
