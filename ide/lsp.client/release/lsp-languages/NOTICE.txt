@@ -1,0 +1,13 @@
+Files in this folder are used by the automatic language server setup
+(org.netbeans.modules.lsp.client.options.KnownLanguages).
+
+python.tmLanguage.json - MagicPython grammar (https://github.com/MagicStack/MagicPython),
+    as distributed with Visual Studio Code 1.142.0 (extensions/python), MIT License,
+    Copyright (c) 2015-present MagicStack Inc. and Microsoft Corporation.
+rust.tmLanguage.json - rust-syntax grammar (https://github.com/dustypomerleau/rust-syntax),
+    as distributed with Visual Studio Code 1.142.0 (extensions/rust), MIT License,
+    Copyright (c) Dustin Pomerleau and Microsoft Corporation.
+python.png, rust.png - logos from Simple Icons 16.35.0 (https://simpleicons.org), CC0-1.0;
+    the trademarks belong to their owners.
+
+MIT License text: see https://github.com/microsoft/vscode/blob/main/LICENSE.txt
