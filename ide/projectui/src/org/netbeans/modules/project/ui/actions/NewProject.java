@@ -20,6 +20,7 @@
 package org.netbeans.modules.project.ui.actions;
 
 import java.awt.EventQueue;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +30,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.prefs.Preferences;
 import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ProjectManager;
 import org.netbeans.modules.project.ui.NewProjectWizard;
@@ -36,7 +40,6 @@ import org.netbeans.modules.project.ui.OpenProjectList;
 import org.netbeans.modules.project.ui.OpenProjectListSettings;
 import org.netbeans.modules.project.ui.ProjectTab;
 import org.netbeans.modules.project.ui.ProjectUtilities;
-import org.netbeans.modules.project.ui.ProjectsRootNode;
 import static org.netbeans.modules.project.ui.actions.Bundle.*;
 import org.netbeans.modules.project.ui.api.ProjectTemplates;
 import org.netbeans.spi.project.ui.support.CommonProjectActions;
@@ -44,8 +47,6 @@ import org.netbeans.spi.project.ui.support.ProjectConvertors;
 import org.netbeans.spi.project.ui.templates.support.Templates;
 import org.openide.ErrorManager;
 import org.openide.awt.ActionID;
-import org.openide.awt.ActionReference;
-import org.openide.awt.ActionReferences;
 import org.openide.awt.ActionRegistration;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
@@ -57,12 +58,8 @@ import org.openide.util.RequestProcessor;
 
 @ActionID(id = "org.netbeans.modules.project.ui.NewProject", category = "Project")
 @ActionRegistration(displayName = "#LBL_NewProjectAction_Name", iconBase = "org/netbeans/modules/project/ui/resources/newProject.png")
-@ActionReferences({
-    @ActionReference(path = "Shortcuts", name = "DS-N"),
-    @ActionReference(path = ProjectsRootNode.ACTIONS_FOLDER, position = 100),
-    @ActionReference(path = "Menu/File", position = 100),
-    @ActionReference(path = "Toolbars/File", position = 200)
-})
+// menu, toolbar, Projects tab and Ctrl+Shift+N open the IntelliJ-style dialog of nb/java.starters,
+// which offers this classic wizard as "More project types..."
 @Messages("LBL_NewProjectAction_Name=Ne&w Project...")
 public class NewProject extends AbstractAction {
         
@@ -88,8 +85,36 @@ public class NewProject extends AbstractAction {
         }
     }    
         
+    /** The IntelliJ-style New Project dialog of nb/java.starters, if that module is installed. */
+    private static final String STARTERS_ACTION = "Actions/Project/org-netbeans-modules-java-starters-NewProjectDialog-OpenAction.instance"; // NOI18N
+
+    @Messages({
+        "LBL_BackToStarters=Back to Starters",
+        "HINT_BackToStarters=Back to the Maven, Java Web, Spring Boot and Quarkus generators"
+    })
+    private static void addBackToStarters(NewProjectWizard wizard) {
+        Action starters = FileUtil.getConfigObject(STARTERS_ACTION, Action.class);
+        if (starters == null) {
+            return;
+        }
+        JButton back = new JButton(LBL_BackToStarters());
+        back.setToolTipText(HINT_BackToStarters());
+        back.addActionListener(e -> {
+            // closing the dialog makes TemplateWizard.instantiate() return as if cancelled
+            Window w = SwingUtilities.getWindowAncestor(back);
+            if (w != null) {
+                w.setVisible(false);
+                w.dispose();
+            }
+            SwingUtilities.invokeLater(() -> starters.actionPerformed(
+                    new ActionEvent(back, ActionEvent.ACTION_PERFORMED, null)));
+        });
+        wizard.setAdditionalOptions(new Object[] {back});
+    }
+
     /*T9Y*/ NewProjectWizard prepareWizardDescriptor(FileObject fo) {
         NewProjectWizard wizard = new NewProjectWizard(fo);
+        addBackToStarters(wizard);
             
         wizard.putProperty(ProjectTemplates.PRESELECT_CATEGORY, getValue(ProjectTemplates.PRESELECT_CATEGORY));
         wizard.putProperty(ProjectTemplates.PRESELECT_TEMPLATE, getValue(ProjectTemplates.PRESELECT_TEMPLATE));

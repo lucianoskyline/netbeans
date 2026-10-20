@@ -58,7 +58,7 @@ public final class ProjectWidget extends WidgetButton {
         if (open.length > 0) {
             popup.addSeparator();
         }
-        add(popup, WidgetButton.actionItem(PROJECT_ACTIONS + "org-netbeans-modules-project-ui-NewProject.instance", null, null));
+        add(popup, WidgetButton.actionItem(PROJECT_ACTIONS + "org-netbeans-modules-java-starters-NewProjectDialog-OpenAction.instance", null, null));
         add(popup, WidgetButton.actionItem(PROJECT_ACTIONS + "org-netbeans-modules-project-ui-OpenProject.instance", null, null));
         add(popup, WidgetButton.actionItem(PROJECT_ACTIONS + "org-netbeans-modules-project-ui-RecentProjects.instance", null, null));
         if (current != null) {

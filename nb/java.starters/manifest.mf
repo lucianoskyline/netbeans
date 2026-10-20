@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+AutoUpdate-Show-In-Client: true
+OpenIDE-Module: org.netbeans.modules.java.starters
+OpenIDE-Module-Localizing-Bundle: org/netbeans/modules/java/starters/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
