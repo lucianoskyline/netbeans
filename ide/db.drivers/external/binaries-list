@@ -15,3 +15,4 @@
 # specific language governing permissions and limitations
 # under the License.
 015015A54F15E340A9A8A6A2C5457429CB1176B8 org.postgresql:postgresql:42.5.4
+43E30438C4C8707272EAD3CD3167A1E07ABB2C3C com.mysql:mysql-connector-j:26.7.0

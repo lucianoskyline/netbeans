@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright 2026 Luciano Lopes.
+    Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0).
+-->
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="Databases">
+        <folder name="Explorer">
+            <folder name="Connection">
+                <folder name="Actions">
+                    <file name="org-netbeans-modules-db-tools-DbActions$ShowErDiagram.instance">
+                        <attr name="position" intvalue="360"/>
+                    </file>
+                </folder>
+            </folder>
+            <folder name="Catalog">
+                <folder name="Actions">
+                    <file name="org-netbeans-modules-db-tools-DbActions$ShowErDiagram.instance">
+                        <attr name="position" intvalue="360"/>
+                    </file>
+                </folder>
+            </folder>
+            <folder name="Schema">
+                <folder name="Actions">
+                    <file name="org-netbeans-modules-db-tools-DbActions$ShowErDiagram.instance">
+                        <attr name="position" intvalue="360"/>
+                    </file>
+                </folder>
+            </folder>
+            <folder name="TableList">
+                <folder name="Actions">
+                    <file name="org-netbeans-modules-db-tools-DbActions$ShowErDiagram.instance">
+                        <attr name="position" intvalue="360"/>
+                    </file>
+                </folder>
+            </folder>
+            <folder name="Table">
+                <folder name="Actions">
+                    <file name="org-netbeans-modules-db-tools-DbActions$ShowErDiagram.instance">
+                        <attr name="position" intvalue="140"/>
+                    </file>
+                    <file name="org-netbeans-modules-db-tools-DbActions$ExportData.instance">
+                        <attr name="position" intvalue="120"/>
+                    </file>
+                    <file name="org-netbeans-modules-db-tools-DbActions$ImportCsv.instance">
+                        <attr name="position" intvalue="130"/>
+                    </file>
+                    <file name="org-netbeans-modules-db-tools-DbActions$RenameTable.instance">
+                        <attr name="position" intvalue="210"/>
+                    </file>
+                </folder>
+            </folder>
+            <folder name="Column">
+                <folder name="Actions">
+                    <file name="org-netbeans-modules-db-tools-DbActions$RenameColumn.instance">
+                        <attr name="position" intvalue="200"/>
+                    </file>
+                </folder>
+            </folder>
+        </folder>
+    </folder>
+</filesystem>
